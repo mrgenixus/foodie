@@ -1,0 +1,10 @@
+- @meals.each do |meal|
+  %ul
+    %li
+      %dl
+        %dt= meal.name
+        %dd
+          .chef= meal.chef
+          .day= meal.day
+          %textarea.description=meal.description
+              
