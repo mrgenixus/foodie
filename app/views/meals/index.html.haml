@@ -6,5 +6,7 @@
         %dd
           .chef= meal.chef
           .day= meal.day
-          %textarea.description=meal.description
-              
+          .description
+            -meal.description.split("\n").each do |part|
+              =part
+              %br
