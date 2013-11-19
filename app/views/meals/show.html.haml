@@ -1,5 +1,6 @@
 = link_to "Meals", meals_path 
 > #{ @meal.name }
+> #{link_to "Edit", edit_meal_path(@meal)} | #{link_to "Delete", meal_path(@meal), method: :delete, confirm: "Are you sure you want to delete this meal?"}
 
 %h3
   #{@meal.name}

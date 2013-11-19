@@ -1,12 +1,10 @@
 class MealsController < ApplicationController
   before_action :lookup_meals, only: [:index]
-  before_action :lookup_meal, only: [:edit, :update, :show]
+  before_action :lookup_meal, only: [:edit, :show]
 
-  def index
-  end
-
-  def edit
-  end
+  def index;end
+  def edit; end
+  def show; end
 
   def update
     lookup_meal.update_attributes params_for_meal
@@ -27,14 +25,10 @@ class MealsController < ApplicationController
       redirect_to meal_path(@meal)
 
     else
-      flash[:error] = "Meal note Saved"
+      flash[:error] = "Unable to save Meal"
 
-      redirect_to new_meal_path
+      render "new"
     end
-  end
-
-
-  def show
   end
 
   def destroy
