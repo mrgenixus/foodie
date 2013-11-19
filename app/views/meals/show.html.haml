@@ -1,0 +1,13 @@
+= link_to "Meals", meals_path 
+> #{ @meal.name }
+
+%h3
+  #{@meal.name}
+
+%block_quote
+.chef= @meal.chef
+.day #{@meal.day} (#{@meal.meal})
+.description
+  -@meal.description.split("\n").each do |part|
+    =part
+    %br

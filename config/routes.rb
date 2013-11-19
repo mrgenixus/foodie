@@ -54,5 +54,5 @@ Foodie::Application.routes.draw do
   #     resources :products
   #   end
 
-  resources :meals, only: [:index]
+  resources :meals, only: [:index, :edit, :update, :show, :new, :create, :destroy]
 end
