@@ -1,16 +1,17 @@
 = form_for @meal do |f|
   .row
     = f.label :name, class: "span2"
-    = f.text_field :name, class: "span4"
+    = f.text_field :name, class: "span5"
   .row
     = f.label :slot, class: "span2"
-    = f.date_field :day, class: "span4"
-    = f.text_field :meal, class: "span4"
+    = f.date_field :day, class: "span2"
+    = f.select "meal", options_for_select(Meal::MEALTIMES.map {|v| [v.titleize,v] }), include_blank: true, class: "span3"
+    - # class: "span4"
   .row
     = f.label :chef, class: "span2"
-    = f.text_field :chef, class: "span4"
+    = f.text_field :chef, class: "span5"
   .row
     = f.label :description, class: "span2"
-    = f.text_area :description, class: "span4"
+    = f.text_area :description, class: "span5"
   .row
     = f.submit "Save Meal Slot", class: "btn btn-lg btn-default btn-black"

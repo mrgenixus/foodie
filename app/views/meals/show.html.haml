@@ -6,7 +6,7 @@
 
 %block_quote
 .chef= @meal.chef
-.day #{@meal.day} (#{@meal.meal})
+.day #{@meal.day} (#{@meal.meal.titleize})
 .description
   -@meal.description.split("\n").each do |part|
     =part
