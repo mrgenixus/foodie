@@ -13,7 +13,7 @@ class MealsController < ApplicationController
   end
 
   def new
-    @meal = Meal.new
+    @meal = Meal.new day: last_meal
   end
 
   def create
@@ -53,5 +53,15 @@ class MealsController < ApplicationController
     @meals = Meal.order(:day).where(day: (Time.now.to_date..(7.days.from_now.to_date)))
   end
 
+  def today
+    @meals = Meal.where(day: Time.now.to_date)
+    render :index
+  end
+
+  private 
+
+  def last_meal
+    [ Time.now.to_date, Meal.order(:day).last.day + 1.day].max
+  end
 
 end
