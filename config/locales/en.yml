@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+  date:
+    formats:
+      short: "%m/%d/%Y"
+      friendly: "%A, %B %-d"
+      terse: "%a %m/%-d"

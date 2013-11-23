@@ -1,10 +1,20 @@
+require "paging.rb"
+
 class MealsController < ApplicationController
   before_action :lookup_meals, only: [:index]
   before_action :lookup_meal, only: [:edit, :show]
 
-  def index;end
-  def edit; end
-  def show; end
+  helper :date_pager
+
+  include Paging
+  def index
+    new
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @meals }
+    end
+  end
 
   def update
     lookup_meal.update_attributes params_for_meal
@@ -42,7 +52,7 @@ class MealsController < ApplicationController
   end
 
   def params_for_meal
-    params.require(:meal).permit(:name, :description, :chef, :day, :meal)
+    params.require(:meal).permit(:name, :description, :chef, :day, :meal, :dishwasher)
   end
 
   def lookup_meal
@@ -50,7 +60,7 @@ class MealsController < ApplicationController
   end
 
   def lookup_meals
-    @meals = Meal.order(:day).where(day: (Time.now.to_date..(7.days.from_now.to_date)))
+    @meals = Meal.order(:day).where(day: paged_week)
   end
 
   def today

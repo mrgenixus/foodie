@@ -3,6 +3,7 @@ class Meal < ActiveRecord::Base
   validates :name, presence: true
 
   validates :day, presence: true
+  validates :dishwasher, presence: true
 
   validate :valid_day
 

@@ -31,6 +31,7 @@
             %ul.nav
               %li= link_to "Add A Meal", new_meal_path
               %li= link_to "List Meals", meals_path
+              %li= link_to "Todays Meals", today_path
 
     .container.navbar-offset{class: ["action-#{params[:action]}", "controller-#{params[:controller]}", params[:id].present? ? "item-#{params[:id]}" : "" ]}
 
