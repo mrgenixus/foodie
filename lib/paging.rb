@@ -17,11 +17,11 @@ module Paging
   end
 
   def next_page
-    current_page + 1
+    [current_page + 1, number_of_pages].min
   end
 
   def prev_page
-    current_page - 1
+    [current_page - 1, 1].max
   end
 
   def current_page
@@ -60,6 +60,10 @@ module Paging
 
   def total_days
     last_page - first_page
+  end
+
+  def week_of (date = Time.now.to_date)
+    date..(date + 7.days)
   end
 
 end

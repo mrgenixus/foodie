@@ -1,0 +1,9 @@
+%h3 Meals
+
+= render "week_header"
+= render "meal_rows"
+.navbar.navbar-fixed-bottom
+  .row.well
+    .span4
+      = link_to "Add Meal", new_meal_path(initial_date: [@date_range.last, @meals.last.day + 1].min), class: "btn btn-success"
+= render "hidden_template"

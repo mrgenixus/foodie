@@ -1,0 +1,14 @@
+= form_for :plan, action: new_plan_path, method: :get do |f|
+  %table.plan_grid
+    %tr
+      %td
+      - (0..7).each do |n|
+        %th.column_select{class: "select-column- #{n}"}= l (Time.now + n.days).to_date, format: :terse
+
+      - Meal::MEALTIMES.each do |meal|
+        %tr{class: "row-#{meal}"}
+          %th.row-select{"data-row" => meal}= meal
+          - (0..7).each do |n|
+            %td.column{class: "column-#{n}"}= check_box_tag "meal[#{(Time.now + n.days).to_date}][#{meal}]"
+  = f.submit
+

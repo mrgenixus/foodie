@@ -1,4 +1,5 @@
 Foodie::Application.routes.draw do
+  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -55,6 +56,30 @@ Foodie::Application.routes.draw do
   #   end
 
   resources :meals, only: [:index, :edit, :update, :show, :new, :create, :destroy] 
-  get "/today", to: "meals#today"
-  
+  resource :plan, only: [:new, :create, :show] do
+    post "/new", to: "plans#create"
+    resources :meals, only: [:create]
+  end
+
+  get "/today", to: "meals#today", as: :today
+  get "/week/:date", to: "meals#week", as: :week
+  get "/week/", to: "meals#week", as: :current_week
+  get "/next/", to: "meals#next", as: :next
+
+  class CurrentUserConstraint
+    def matches? 
+      request.cookies.key?("user_token")
+    end
+  end
+
+  resource :user, use_current_user: true do
+    resources :meals, only: [:index]
+
+    get "/week/:date", to: "meals#week", as: :week
+    get "/week/", to: "meals#week", as: :current_week
+
+    get "/next/", to: "meals#next", as: :next
+  end
+
+  root to: "meals#index"
 end

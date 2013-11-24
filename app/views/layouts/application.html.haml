@@ -32,6 +32,9 @@
               %li= link_to "Add A Meal", new_meal_path
               %li= link_to "List Meals", meals_path
               %li= link_to "Todays Meals", today_path
+              %li= link_to "Next 7 Days", current_week_path
+              - if current_user
+                %li= link_to "My Next Assignment", next_user_path
 
     .container.navbar-offset{class: ["action-#{params[:action]}", "controller-#{params[:controller]}", params[:id].present? ? "item-#{params[:id]}" : "" ]}
 

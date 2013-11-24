@@ -43,12 +43,8 @@ class MealsController < ApplicationController
 
   def destroy
     if lookup_meal.delete
-      flash[:notice] = "Meal Deleted"
-    else
-      flash[:error] = 'Unable to delete Meal'
+      render json: { success: true}
     end
-
-    redirect_to :meals
   end
 
   def params_for_meal
@@ -65,13 +61,28 @@ class MealsController < ApplicationController
 
   def today
     @meals = Meal.where(day: Time.now.to_date)
-    render :index
+    new
+  end
+
+  def next
+    meals = Meal.order(:day)
+    meals = meals.where("? IN (chef, dishwasher)", current_user.name) if params[:use_current_user]
+    @meal = meals.first
+
+    render :show
+  end
+
+
+  def week
+    @date_range = week_of((params[:date]||Time.now).to_date)
+    @meals = Meal.where(day: @date_range)
+    new
   end
 
   private 
 
   def last_meal
-    [ Time.now.to_date, Meal.order(:day).last.day + 1.day].max
+    params[:initial_date] ? params[:initial_date] : [ Time.now.to_date, Meal.order(:day).last.day + 1.day].max
   end
 
 end

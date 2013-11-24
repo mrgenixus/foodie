@@ -1,0 +1,5 @@
+= form_for(@plan,url: url_for([:plan])) do |f|
+  - @plan.meals.each do |meal|
+    = fields_for "plan[meals][]", meal do |f|
+      = render "meals/fields_for_meal", f: f
+    %hr

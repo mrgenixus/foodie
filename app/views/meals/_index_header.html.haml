@@ -1,0 +1,5 @@
+.row.well 
+  %i.span4
+    = date_range(current_page).map { |d| l d, format: :friendly }.join (" => ")
+  .span4.pull-right
+    = date_pager(count: :all, show_next_prev: :always)

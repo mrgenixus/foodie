@@ -7,6 +7,9 @@ class Meal < ActiveRecord::Base
 
   validate :valid_day
 
+  belongs_to :chef_user, class_name: User, foreign_key: :chef, primary_key: :name
+  belongs_to :dishwasher_user, class_name: User, foreign_key: :dishwasher, primary_key: :name
+
   MEALTIMES = %W(breakfast second_breakfast brunch elevensies lunch sunday_dinner sunday_desert afternoon_tea supper dinner bachelors_dinner)
 
   def valid_day

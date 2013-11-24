@@ -1,0 +1,4 @@
+.row.well 
+  %i.span4
+    = @date_range.minmax.map { |d| l d, format: :friendly }.join (" => ")
+  .span4.pull-right

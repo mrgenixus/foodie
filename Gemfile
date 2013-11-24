@@ -18,6 +18,7 @@ gem 'haml-rails'
 gem "therubyracer"
 gem "less-rails"
 gem 'twitter-bootstrap-rails'
+gem 'devise'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -33,6 +34,8 @@ gem 'jbuilder', '~> 1.2'
 
 group :development, :test do
   gem "pry"
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 

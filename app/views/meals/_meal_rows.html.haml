@@ -1,0 +1,15 @@
+.row
+  .span3.offset1 Meal
+  .span2.offset1 Chef
+  .span2 Dishwasher
+- @meals.each do |meal|
+  .row.item
+    .span1= l meal.day, format: :terse
+    .span4
+      = link_to meal.name, meal_path(meal)
+      (#{meal.meal.titleize})
+    .span2.chef= meal.chef
+    .span2.dishwasher= meal.dishwasher
+    .span2.tools
+      #{link_to "Edit", edit_meal_path(meal)} |
+      #{link_to "Delete", meal_path(meal), method: :delete, confirm: "Are you sure you want to delete this meal?", remote: true}

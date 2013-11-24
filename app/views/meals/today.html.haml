@@ -1,0 +1,8 @@
+%h3 Today
+
+= render "meal_rows"
+.navbar.navbar-fixed-bottom
+  .row.well
+    .span4
+      = link_to "Add Meal", new_meal_path(initial_date: Time.now.to_date), class: "btn btn-success"
+= render "hidden_template"
