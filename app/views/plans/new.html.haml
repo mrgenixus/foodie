@@ -10,5 +10,5 @@
           %th.row-select{"data-row" => meal}= meal
           - @week.each do |date|
             %td.column{class: "column-#{date.to_s.parameterize}"}= check_box_tag "meal[#{date}][#{meal}]"
-  = f.submit
+  = f.submit "Plan Meals"
 
