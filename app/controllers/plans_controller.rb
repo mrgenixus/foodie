@@ -1,4 +1,8 @@
+require "paging.rb"
+
 class PlansController < ApplicationController
+  include Paging
+
   def new
     @plan = Plan.new
 
@@ -12,6 +16,8 @@ class PlansController < ApplicationController
       @plan.meals = @plan.meals.sort_by { |m| m.day.to_date }
 
       render :plan
+    else
+      @week = week_of(params[:initial_date].try(:to_date)||Time.now.to_date)
     end
   end
 

@@ -4,8 +4,7 @@
 .row
   = f.label :slot, class: "span2"
   = f.date_field :day, class: "span4"
-  = f.select "meal", Meal::MEALTIMES.map {|v| [v.titleize,v] }, select: :meal,  include_blank: true, class: "span3"
-  - # class: "span4"
+  = f.select :meal, Meal::MEALTIMES.map {|v| [v.titleize,v] }, select: :meal,  include_blank: true, class: "span3"
 .row
   = f.label :chef, class: "span2"
   = f.select :chef, User.all.map(&:name), class: "span5"

@@ -35,6 +35,14 @@
               %li= link_to "Next 7 Days", current_week_path
               - if current_user
                 %li= link_to "My Next Assignment", next_user_path
+                %li= link_to "My Assignments", user_meals_path
+
+                %li.pull-right= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-btn"
+              -else
+                = form_tag user_session_path, class: "navbar-form form-inline pull-right" do
+                  = text_field_tag 'user[email]', "", placeholder: "email@example.com"
+                  = password_field_tag 'user[password]', "", placeholder: "password" 
+                  %button Sign in
 
     .container.navbar-offset{class: ["action-#{params[:action]}", "controller-#{params[:controller]}", params[:id].present? ? "item-#{params[:id]}" : "" ]}
 

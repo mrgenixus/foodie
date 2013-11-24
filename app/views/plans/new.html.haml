@@ -2,13 +2,13 @@
   %table.plan_grid
     %tr
       %td
-      - (0..7).each do |n|
-        %th.column_select{class: "select-column- #{n}"}= l (Time.now + n.days).to_date, format: :terse
+      - @week.each do |date|
+        %th.column_select{class: "select-column-#{date.to_s.parameterize}"}= l date, format: :terse
 
       - Meal::MEALTIMES.each do |meal|
         %tr{class: "row-#{meal}"}
           %th.row-select{"data-row" => meal}= meal
-          - (0..7).each do |n|
-            %td.column{class: "column-#{n}"}= check_box_tag "meal[#{(Time.now + n.days).to_date}][#{meal}]"
+          - @week.each do |date|
+            %td.column{class: "column-#{date.to_s.parameterize}"}= check_box_tag "meal[#{date}][#{meal}]"
   = f.submit
 

@@ -9,7 +9,7 @@ class MealsController < ApplicationController
   include Paging
   def index
     new
-
+    @meals = @meals.where("? IN (chef, dishwasher)", current_user.name) if params[:use_current_user]
     respond_to do |format|
       format.html
       format.json { render json: @meals }

@@ -5,5 +5,6 @@
 .navbar.navbar-fixed-bottom
   .row.well
     .span4
-      = link_to "Add Meal", new_meal_path(initial_date: [@date_range.last, @meals.last.day + 1].min), class: "btn btn-success"
+      = link_to "Add Meal", new_meal_path(initial_date: [@date_range.last, @meals.count == 0 ? @date_range.first : @meals.last.day + 1.day ].min), class: "btn btn-success"
+      = link_to " Plan for: #{week_of(@date_range.first).minmax.join(" => ")}", new_plan_path(initial_date: @date_range.first), class: "btn btn-success"
 = render "hidden_template"
