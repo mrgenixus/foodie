@@ -51,7 +51,7 @@ module Paging
   end
 
   def last_page
-    @last_date ||= Meal.order(:day).last.day
+    @last_date ||= Meal.order(:day).last.try(:day) || Time.now.to_date
   end
 
   def first_page

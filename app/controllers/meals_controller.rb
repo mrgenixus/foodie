@@ -23,7 +23,7 @@ class MealsController < ApplicationController
   end
 
   def new
-    @meal = Meal.new day: last_meal
+    @meal = Meal.new day: default_date
   end
 
   def create
@@ -82,7 +82,11 @@ class MealsController < ApplicationController
   private 
 
   def last_meal
-    params[:initial_date] ? params[:initial_date] : [ Time.now.to_date, Meal.order(:day).last.day + 1.day].max
+    [ Time.now.to_date, (Meal.order(:day).last.try(:day) || 1.day.ago) + 1.day].max
+  end
+
+  def default_date
+    params[:initial_date] ? params[:initial_date] : last_meal
   end
 
 end
