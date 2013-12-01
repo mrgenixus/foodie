@@ -20,6 +20,8 @@ gem "less-rails"
 gem 'twitter-bootstrap-rails'
 gem 'devise'
 
+gem 'rails_autolink'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

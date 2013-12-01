@@ -12,5 +12,5 @@
 .description
   - if @meal.description.present?
     - @meal.description.split("\n").each do |part|
-      =part
+      =auto_link(part)
       %br
