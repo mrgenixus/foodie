@@ -7,4 +7,6 @@ class User < ActiveRecord::Base
 
   has_many :prep_duties, class_name: Meal, primary_key: :name, foreign_key: :chef
   has_many :dish_duties, class_name: Meal, primary_key: :name, foreign_key: :dishwasher
+
+  validates :name, presence: true
 end
