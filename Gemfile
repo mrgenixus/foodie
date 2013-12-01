@@ -24,9 +24,12 @@ gem 'haml-rails'
 gem "therubyracer"
 gem "less-rails"
 gem 'twitter-bootstrap-rails'
+
 gem 'devise'
+gem "omniauth-google-oauth2"
 
 gem 'rails_autolink'
+
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

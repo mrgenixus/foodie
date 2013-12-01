@@ -1,0 +1,13 @@
+defaults: &defaults
+  SENDGRID_USERNAME:      #sendgrid login name here
+  SENDGRID_PASSWORD:      #sendgrid login password here
+  default_email:          #site email
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
