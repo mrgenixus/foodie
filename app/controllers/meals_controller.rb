@@ -1,6 +1,9 @@
 require "paging.rb"
 
 class MealsController < ApplicationController
+
+  before_filter :authenticate_user!, only: [:edit, :update, :new, :ceate]
+
   before_action :lookup_meals, only: [:index]
   before_action :lookup_meal, only: [:edit, :show]
 
