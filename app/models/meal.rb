@@ -51,8 +51,8 @@ class Meal < ActiveRecord::Base
     event.summary = self.name
     event.location = 'SSH/West House'
     event.klass = "PUBLIC"
-    event.created = self.created_at
-    event.last_modified = self.updated_at
+    event.created = self.created_at.strftime("%Y%m%dT%H%M%S")
+    event.last_modified = self.updated_at.strftime("%Y%m%dT%H%M%S")
     
     event
   end
