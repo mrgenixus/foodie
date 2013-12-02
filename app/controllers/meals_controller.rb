@@ -10,12 +10,19 @@ class MealsController < ApplicationController
   helper :date_pager
 
   include Paging
+
   def index
     new
     @meals = @meals.where("? IN (chef, dishwasher)", current_user.name) if params[:use_current_user]
     respond_to do |format|
       format.html
       format.json { render json: @meals }
+      format.ics do
+        calendar = Icalendar::Calendar.new
+        @meals.each {|meal| calendar.add_event(meal.to_ics) }
+        calendar.publish
+        render :text => calendar.to_ical
+      end
     end
   end
 
@@ -65,6 +72,16 @@ class MealsController < ApplicationController
   def today
     @meals = Meal.where(day: Time.now.to_date)
     new
+    respond_to do |format|
+      format.html # => render :show
+      format.json { render json: @meal }
+      format.ics do
+        calendar = Icalendar::Calendar.new
+        calendar.add_event(@meal.to_ics)
+        calendar.publish
+        render :text => calendar.to_ical
+      end
+    end
   end
 
   def next
@@ -72,7 +89,29 @@ class MealsController < ApplicationController
     meals = meals.where("? IN (chef, dishwasher)", current_user.name) if params[:use_current_user]
     @meal = meals.first
 
-    render :show
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @meal }
+      format.ics do
+        calendar = Icalendar::Calendar.new
+        calendar.add_event(@meal.to_ics)
+        calendar.publish
+        render :text => calendar.to_ical
+      end
+    end
+  end
+
+  def show
+    respond_to do |format|
+      format.html # => render :show
+      format.json { render json: @meal }
+      format.ics do
+        calendar = Icalendar::Calendar.new
+        calendar.add_event(@meal.to_ics)
+        calendar.publish
+        render :text => calendar.to_ical
+      end
+    end
   end
 
 
@@ -80,6 +119,16 @@ class MealsController < ApplicationController
     @date_range = week_of((params[:date]||Time.now).to_date)
     @meals = Meal.where(day: @date_range)
     new
+    respond_to do |format|
+      format.html
+      format.json { render json: @meals }
+      format.ics do
+        calendar = Icalendar::Calendar.new
+        @meals.each {|meal| calendar.add_event(meal.to_ics) }
+        calendar.publish
+        render :text => calendar.to_ical
+      end
+    end
   end
 
   private 
