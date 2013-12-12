@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :user_time_zone
 
   def noop; end
 
@@ -17,6 +18,12 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:password, :password_confirmation, :name, :email) }
+  end
+
+  private
+
+  def user_time_zone
+    Time.use_zone(session[:time_zone]) { Time.now }if session.has_key? :time_zone
   end
 
 end

@@ -95,7 +95,7 @@ class MealsController < ApplicationController
       format.ics do
         calendar = Icalendar::Calendar.new
         calendar.add_event(@meal.to_ics)
-        calendar.publish
+        calendar.publish 
         render :text => calendar.to_ical
       end
     end

@@ -41,18 +41,22 @@ class Meal < ActiveRecord::Base
     Range.new starttime, endtime
   end
 
+  def long_description
+    "Chef: #{chef}\n" + "Dishwasher: #{dishwasher}\n" + description 
+  end
+
   def to_ics
 
     times = time_range.minmax
 
     event = Icalendar::Event.new
-    event.start = (times.first ).strftime("%Y%m%dT%H%M%S")
-    event.end = (times.last ).strftime("%Y%m%dT%H%M%S")
-    event.summary = self.name
+    event.start = (times.first).strftime("%Y%m%dT%H%M%S")
+    event.end = (times.last).strftime("%Y%m%dT%H%M%S")
+    event.summary = "#{self.meal.titleize}: #{self.name}"
+    event.description = self.long_description
     event.location = 'SSH/West House'
     event.klass = "PUBLIC"
     event.created = self.created_at.strftime("%Y%m%dT%H%M%S")
-    event.last_modified = self.updated_at.strftime("%Y%m%dT%H%M%S")
     
     event
   end

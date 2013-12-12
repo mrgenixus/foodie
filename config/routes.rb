@@ -81,5 +81,7 @@ Foodie::Application.routes.draw do
     get "/next/", to: "meals#next", as: :next
   end
 
+  resource :session, only: [:update]
+
   root to: "meals#index"
 end

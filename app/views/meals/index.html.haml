@@ -1,4 +1,6 @@
-%h3 Meals
+%h3
+  Meals
+  %a.btn{href: "http://www.google.com/calendar/render?cid=#{url_for(format: 'ics', :only_path => false, protocol: 'webcal')}", target: "_blank" } Add To Calendar
 
 = render "index_header"
 = render "meal_rows"
