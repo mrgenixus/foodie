@@ -25,9 +25,9 @@
             %span.icon-bar
             %span.icon-bar
           = link_to "Foodie", root_path, class: "brand"
-          = Time.now()
           .container.nav-collapse
             %ul.nav
+              %li= Time.zone.now
               %li= link_to "Add A Meal", new_meal_path
               %li= link_to "List Meals", meals_path
               %li= link_to "Todays Meals", today_path
