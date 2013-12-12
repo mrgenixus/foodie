@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   private
 
   def user_time_zone
-    Time.use_zone(session[:time_zone]) { Time.now }if session.has_key? :time_zone
+    Time.zone = session[:time_zone] if session.has_key? :time_zone
   end
 
 end
