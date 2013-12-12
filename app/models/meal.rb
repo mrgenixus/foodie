@@ -31,7 +31,7 @@ class Meal < ActiveRecord::Base
   MEALTIMES = MEALTIMES_HASH.keys.map &:to_s
 
   def valid_day
-    errors.add(:day, "Date must not be in the past") if day < Time.now.to_date
+    errors.add(:day, "Date must not be in the past") if day < Time.zone.now.to_date
   end
 
   def time_range

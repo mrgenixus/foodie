@@ -17,7 +17,7 @@ class PlansController < ApplicationController
 
       render :plan
     else
-      @week = week_of(params[:initial_date].try(:to_date)||Time.now.to_date)
+      @week = week_of(params[:initial_date].try(:to_date)||Time.zone.now.to_date)
     end
   end
 

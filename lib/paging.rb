@@ -43,26 +43,26 @@ module Paging
   private
 
   def page_start_date(page = current_page)
-    (Time.now + ( 7 * (page - 1)).days).to_date
+    (Time.zone.now + ( 7 * (page - 1)).days).to_date
   end
 
   def page_end_date(page = current_page)
-    (Time.now + ( 7 * (page )).days).to_date
+    (Time.zone.now + ( 7 * (page )).days).to_date
   end
 
   def last_page
-    @last_date ||= Meal.order(:day).last.try(:day) || Time.now.to_date
+    @last_date ||= Meal.order(:day).last.try(:day) || Time.zone.now.to_date
   end
 
   def first_page
-    Time.now.to_date
+    Time.zone.now.to_date
   end
 
   def total_days
     last_page - first_page
   end
 
-  def week_of (date = Time.now.to_date)
+  def week_of (date = Time.zone.now.to_date)
     date..(date + 7.days)
   end
 

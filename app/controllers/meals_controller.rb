@@ -70,7 +70,7 @@ class MealsController < ApplicationController
   end
 
   def today
-    @meals = Meal.where(day: Time.now.to_date)
+    @meals = Meal.where(day: Time.zone.now.to_date)
     new
     respond_to do |format|
       format.html # => render :show
@@ -116,7 +116,7 @@ class MealsController < ApplicationController
 
 
   def week
-    @date_range = week_of((params[:date]||Time.now).to_date)
+    @date_range = week_of((params[:date]||Time.zone.now).to_date)
     @meals = Meal.where(day: @date_range)
     new
     respond_to do |format|
@@ -134,7 +134,7 @@ class MealsController < ApplicationController
   private 
 
   def last_meal
-    [ Time.now.to_date, (Meal.order(:day).last.try(:day) || 1.day.ago) + 1.day].max
+    [ Time.zone.now.to_date, (Meal.order(:day).last.try(:day) || 1.day.ago) + 1.day].max
   end
 
   def default_date
