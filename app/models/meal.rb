@@ -19,6 +19,7 @@ class Meal < ActiveRecord::Base
     lunch: ["1200","1300"],
     sunday_dinner: ["1300","1400"],
     sunday_desert: ["1500","1600"],
+    holiday_dinner: ["1500","1600"],
     afternoon_tea: ["1600","1700"],
     supper: ["1800","1900"],
     dinner_with_prep: ["1800","2000"],
