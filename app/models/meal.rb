@@ -28,7 +28,7 @@ class Meal < ActiveRecord::Base
     drinks: [21,22],
     coffee: [21,22],
     bachelors_dinner: [24,25]
- }
+  }
 
   MEALTIMES = MEALTIMES_HASH.keys.map &:to_s
 
