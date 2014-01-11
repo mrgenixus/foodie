@@ -29,6 +29,7 @@ gem 'devise'
 gem "omniauth-google-oauth2"
 
 gem 'rails_autolink'
+gem 'activerecord-session_store'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
