@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :user_time_zone
+  before_filter :get_time_zone
 
   def noop; end
 
@@ -23,7 +24,11 @@ class ApplicationController < ActionController::Base
   private
 
   def user_time_zone
-    Time.zone = session[:time_zone] if session.has_key? :time_zone
+    @time_zone ||= Time.zone = session[:time_zone].present? && session[:time_zone]
+  end
+
+  def get_time_zone
+    @time_zone = params[:time_zone] if params[:time_zone].present?
   end
 
 end
