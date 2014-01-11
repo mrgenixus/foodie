@@ -9,9 +9,26 @@ class Meal < ActiveRecord::Base
 
   belongs_to :chef_user, class_name: User, foreign_key: :chef, primary_key: :name
   belongs_to :dishwasher_user, class_name: User, foreign_key: :dishwasher, primary_key: :name
-  belongs_to :venue
 
   MEALTIMES_HASH = {
+<<<<<<< HEAD
+    early_breakfast: ["0600", "0700"],
+    breakfast: ["0730","0830"],
+    second_breakfast: ["0900","1000"],
+    brunch: ["1000","1100"],
+    elevensies: ["1100","1200"],
+    lunch: ["1200","1300"],
+    sunday_dinner: ["1300","1400"],
+    sunday_desert: ["1500","1600"],
+    holiday_dinner: ["1500","1600"],
+    afternoon_tea: ["1600","1700"],
+    supper: ["1800","1900"],
+    dinner_with_prep: ["1800","2000"],
+    dinner: ["1900","2000"],
+    late_dinner: ["2000","2100"],
+    drinks: ["2100","2200"],
+    bachelors_dinner: ["2400","2500"]
+=======
     early_breakfast: [6, 7],
     breakfast: [7.5,8.5],
     second_breakfast: [9,10],
@@ -20,7 +37,6 @@ class Meal < ActiveRecord::Base
     lunch: [12,13],
     sunday_dinner: [13,14],
     sunday_desert: [15,16],
-    holiday_dinner: [15,16],
     afternoon_tea: [16,17],
     supper: [18,19],
     dinner_with_prep: [18,20],
@@ -29,7 +45,8 @@ class Meal < ActiveRecord::Base
     drinks: [21,22],
     coffee: [21,22],
     bachelors_dinner: [24,25]
-  }
+>>>>>>> Made calendar-generation date-aware
+ }
 
   MEALTIMES = MEALTIMES_HASH.keys.map &:to_s
 
@@ -56,8 +73,8 @@ class Meal < ActiveRecord::Base
   def to_ics(zone)
 
     event = Icalendar::Event.new
-    event.start = start_time(zone).utc.strftime("%Y%m%dT%H%M%SZ")
-    event.end = end_time(zone).utc.strftime("%Y%m%dT%H%M%SZ")
+    event.start = start_time(zone).strftime("%Y%m%dT%H%M%S")
+    event.end = end_time(zone).strftime("%Y%m%dT%H%M%S")
     event.summary = "#{self.meal.titleize}: #{self.name}"
     event.description = self.long_description
     event.location = 'SSH/West House'

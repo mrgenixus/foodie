@@ -1,16 +1,23 @@
-.row
-  = f.label :name, class: "span2"
-  = f.text_field :name, class: "span5"
-.row
-  = f.label :slot, class: "span2"
-  = f.date_field :day, class: "span4"
-  = f.select :meal, Meal::MEALTIMES.map {|v| [v.titleize,v] }, select: :meal,  include_blank: true, class: "span3"
-.row
-  = f.label :chef, class: "span2"
-  = f.select :chef, User.all.map(&:name), class: "span5"
-.row
-  = f.label :dishwasher, class: "span2"
-  = f.select :dishwasher, User.all.map(&:name), class: "span5"
-.row
-  = f.label :description, class: "span2"
-  = f.text_area :description, class: "span5"
+.span8
+  .row
+    = f.label :name, class: :span2
+    = f.text_field :name, class: :span5
+  .row
+    = f.label :slot, class: :span2
+    = f.date_field :day, class: "span4"
+    = f.select :meal, Meal::MEALTIMES.map {|v| [v.titleize,v] }, select: :meal,  include_blank: true
+  .row
+    %label.span2
+      Venue
+      %a.add_new_venue{href: '#'} (add)
+
+    = f.collection_select :venue_id, Venue.all, :id, :name, {}, { class: [:span5, :venue_select]}
+  .row
+    = f.label :chef, class: :span2
+    = f.select :chef, User.all.map(&:name)
+  .row
+    = f.label :dishwasher, class: :span2
+    = f.select :dishwasher, User.all.map(&:name)
+  .row
+    = f.label :description, class: :span2
+    = f.text_area :description, class: :span5

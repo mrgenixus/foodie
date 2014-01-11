@@ -1,0 +1,14 @@
+.modal.hide.fade#new_venue_modal
+  = form_for(Venue.new, remote: true) do |f|
+    .modal-header
+      %button.close{type: :button, data: { dismiss: :modal}, aria: {hidden: :true } } &times;
+      %h3 Add Venue
+    
+    .modal-body
+      = render "venues/fields_for_venue", f: f
+    .modal-footer
+      %a.btn{href: "#", type: :button, data: { dismiss: :modal} } Close
+      %a.btn.btn-default Add Venue
+
+= content_for :javascript do
+  = javascript_include_tag :new_venue

@@ -1,4 +1,6 @@
 = form_for @meal do |f|
-  = render "fields_for_meal", {f: f}
+  = render "fields_for_meal",  {f: f}
   .row
   = f.submit "Save Meal Slot", class: "btn btn-lg btn-default btn-black"
+
+= render 'venues/modal'

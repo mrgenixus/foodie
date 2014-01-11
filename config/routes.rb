@@ -83,5 +83,7 @@ Foodie::Application.routes.draw do
 
   resource :session, only: [:update, :show]
 
+  resources :venues
+
   root to: "meals#index"
 end
