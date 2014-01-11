@@ -2,7 +2,7 @@
   .span3.offset1 Meal
   .span2.offset1 Chef
   .span2 Dishwasher
-- @meals.each do |meal|
+- natural_sort(@meals).each do |meal|
   .row.item
     .span1= l meal.day, format: :terse
     .span4

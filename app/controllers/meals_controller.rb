@@ -131,6 +131,11 @@ class MealsController < ApplicationController
     end
   end
 
+  helper_method :natural_sort
+  def natural_sort set
+    set.sort_by { |meal| meal.start_time(user_time_zone) }
+  end
+
   private 
 
   def last_meal
