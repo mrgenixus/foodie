@@ -1,7 +1,6 @@
 %h3
   Meals
-  %a.btn{href: "http://www.google.com/calendar/render?cid=#{url_for(format: 'ics', protocol: 'webcal')}/%3Ftime_zone=America/Denver", target: "_blank" } Add To Calendar
-
+  %a.btn{href: "http://www.google.com/calendar/render?cid=#{url_for(only_path: false, format: 'ics', protocol: 'webcal')}/%3Ftime_zone=America/Denver", target: "_blank" } Add To Calendar
 = render "index_header"
 = render "meal_rows"
 .navbar.navbar-fixed-bottom
