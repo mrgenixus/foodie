@@ -55,8 +55,8 @@ class Meal < ActiveRecord::Base
   def to_ics(zone)
 
     event = Icalendar::Event.new
-    event.start = start_time(zone).strftime("%Y%m%dT%H%M%S")
-    event.end = end_time(zone).strftime("%Y%m%dT%H%M%S")
+    event.start = start_time(zone).utc.strftime("%Y%m%dT%H%M%SZ")
+    event.end = end_time(zone).utc.strftime("%Y%m%dT%H%M%SZ")
     event.summary = "#{self.meal.titleize}: #{self.name}"
     event.description = self.long_description
     event.location = 'SSH/West House'
