@@ -19,7 +19,7 @@ class MealsController < ApplicationController
       format.json { render json: @meals }
       format.ics do
         calendar = Icalendar::Calendar.new
-        @meals.each {|meal| calendar.add_event(meal.to_ics) }
+        @meals.each {|meal| calendar.add_event(meal.to_ics(session[:time_zone])) }
         calendar.publish
         render :text => calendar.to_ical
       end
@@ -77,7 +77,7 @@ class MealsController < ApplicationController
       format.json { render json: @meal }
       format.ics do
         calendar = Icalendar::Calendar.new
-        calendar.add_event(@meal.to_ics)
+        calendar.add_event(@meal.to_ics(session[:time_zone]))
         calendar.publish
         render :text => calendar.to_ical
       end
@@ -94,7 +94,7 @@ class MealsController < ApplicationController
       format.json { render json: @meal }
       format.ics do
         calendar = Icalendar::Calendar.new
-        calendar.add_event(@meal.to_ics)
+        calendar.add_event(@meal.to_ics(session[:time_zone]))
         calendar.publish 
         render :text => calendar.to_ical
       end
@@ -107,7 +107,7 @@ class MealsController < ApplicationController
       format.json { render json: @meal }
       format.ics do
         calendar = Icalendar::Calendar.new
-        calendar.add_event(@meal.to_ics)
+        calendar.add_event(@meal.to_ics(session[:time_zone]))
         calendar.publish
         render :text => calendar.to_ical
       end
@@ -124,7 +124,7 @@ class MealsController < ApplicationController
       format.json { render json: @meals }
       format.ics do
         calendar = Icalendar::Calendar.new
-        @meals.each {|meal| calendar.add_event(meal.to_ics) }
+        @meals.each {|meal| calendar.add_event(meal.to_ics(session[:time_zone])) }
         calendar.publish
         render :text => calendar.to_ical
       end
