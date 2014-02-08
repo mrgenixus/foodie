@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140111195344) do
+ActiveRecord::Schema.define(version: 20140208134932) do
 
   create_table "meals", force: true do |t|
     t.string   "name"
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 20140111195344) do
 
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
+
+  create_table "tentative_assignments", force: true do |t|
+    t.string  "user_name"
+    t.string  "role"
+    t.integer "meal_id"
+    t.boolean "mail_send"
+    t.boolean "accepted"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"
