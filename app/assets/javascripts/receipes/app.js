@@ -2,8 +2,11 @@ var ReceipesMainView = Backbone.View.extend({
   el: "#app"
 });
 
+var ReceipeModel = Backbone.Model.extend({});
+
 var ReceipesCollection = Backbone.Collection.extend({
-  url: 'receipes'
+  url: 'receipes',
+  model: ReceipeModel
 });
 
 var Router = Backbone.Router.extend({

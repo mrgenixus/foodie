@@ -49,6 +49,14 @@ group :development, :test do
   gem "pry"
   gem 'better_errors'
   gem 'binding_of_caller'
+
+  gem 'guard'
+  gem 'guard-rails'
+  gem 'guard-rspec'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'ffaker'
+  gem 'capybara'
 end
 
 
