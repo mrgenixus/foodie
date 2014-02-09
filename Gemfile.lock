@@ -31,6 +31,11 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.1)
     atomic (1.1.14)
+    backbone-on-rails (1.0.0.1)
+      eco
+      ejs
+      jquery-rails
+      rails (>= 3.1)
     bcrypt-ruby (3.1.2)
     better_errors (1.0.1)
       coderay (>= 1.0.0)
@@ -53,6 +58,12 @@ GEM
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
       warden (~> 1.2.3)
+    eco (1.0.0)
+      coffee-script
+      eco-source
+      execjs
+    eco-source (1.1.0.rc.1)
+    ejs (1.1.1)
     erubis (2.7.0)
     execjs (2.0.2)
     faraday (0.8.8)
@@ -182,6 +193,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-session_store
+  backbone-on-rails
   better_errors
   binding_of_caller
   coffee-rails (~> 4.0.0)

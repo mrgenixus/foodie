@@ -31,6 +31,7 @@ gem "omniauth-google-oauth2"
 gem 'rails_autolink'
 gem 'activerecord-session_store'
 
+gem 'backbone-on-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
